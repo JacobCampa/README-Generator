@@ -1,7 +1,6 @@
-// TODO: Include packages needed for this application
-const inquirer = require('inquirer')
+
+const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
-// TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -82,11 +81,14 @@ const questions = [
 
 ];
 
-const template = ({project, description, installdir, usage, credit, license, contribute, tests, gitname, email}) => {
-`
+const template = ({ project, description, installdir, usage, credit, license, contribute, tests, gitname, email, badge }) =>
+    `
 # ${project}
 
+${badge}
+
 ## Description
+
 ${description}
 
 ## Table of Contents
@@ -100,29 +102,62 @@ ${description}
 - [Questions](#Questions)
 
 ## Installation
-${installdir}
-## Usage
-${usage}
-## Credits
-${credit}
-## License
-${license}
-## How to Contribute
-${contribute}
-## Tests
-${tests}
-## Questions
-Find me on Github at https://github.com/${gitname} or email me at: ${email}
-`
-}
 
-// TODO: Create a function to initialize app
+${installdir}
+
+## Usage
+
+${usage}
+
+## Credits
+
+${credit}
+
+## License
+
+${license}
+
+## How to Contribute
+
+${contribute}
+
+## Tests
+
+${tests}
+
+## Questions
+
+Find me on Github at https://github.com/${gitname} or email me at: ${email}
+`;
+
+
 function init() {
     return inquirer.prompt(questions)
-    .then((response) => writeFile('newREADME.md', template(response)))
-    .then(() => console.log('Successfully created your README!'))
-    .catch((err) => console.error(err));
+        .then((response) => {
+            console.log(response)
+            let badge = JSON.stringify(response.license);
+            switch (badge) {
+                case 'MIT':
+                    badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+                    break;
+                case 'Apache License 2.0':
+                    badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+                    break;
+                case 'Mozilla Public License 2.0':
+                    badge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`;
+                    break;
+                case 'The Unlicense':
+                    badge = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`;
+                    break;
+                default:
+                    console.log(badge)
+                    break;
+            }
+            writeFile('newREADME.md', template(response))
+        })
+        .then(() => console.log('Successfully created your README!'))
+        .catch((err) => console.error(err));
 }
 
-// Function call to initialize app
+
 init();
