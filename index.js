@@ -103,7 +103,7 @@ ${description}
 
 ## Installation
 
-${installdir}
+${installdir ? installdir :"Not available"}
 
 ## Usage
 
@@ -111,7 +111,7 @@ ${usage}
 
 ## Credits
 
-${credit}
+${credit ? credit : "Not available"}
 
 ## License
 
@@ -119,11 +119,11 @@ ${license}
 
 ## How to Contribute
 
-${contribute}
+${contribute ? contribute : "Not available"}
 
 ## Tests
 
-${tests}
+${tests ?  tests : "Not available"}
 
 ## Questions
 
@@ -135,25 +135,26 @@ function init() {
     return inquirer.prompt(questions)
         .then((response) => {
             console.log(response)
-            let badge = JSON.stringify(response.license);
-            switch (badge) {
-                case 'MIT':
-                    badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+            const badgeChoice = response.license;
+            let badge = "";
+            switch (badgeChoice) {
+                case "MIT":
+                    badge = "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)";
                     break;
-                case 'Apache License 2.0':
-                    badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+                case "Apache License 2.0":
+                    badge = "![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)";
                     break;
-                case 'Mozilla Public License 2.0':
-                    badge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`;
+                case "Mozilla Public License 2.0":
+                    badge = "![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)";
                     break;
-                case 'The Unlicense':
-                    badge = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`;
+                case "The Unlicense":
+                    badge = "![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)";
                     break;
                 default:
                     console.log(badge)
                     break;
             }
-            writeFile('newREADME.md', template(response))
+            writeFile('newREADME.md', template({...response, badge}))
         })
         .then(() => console.log('Successfully created your README!'))
         .catch((err) => console.error(err));
