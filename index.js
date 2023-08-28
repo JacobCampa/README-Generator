@@ -103,7 +103,7 @@ ${description}
 
 ## Installation
 
-${installdir ? installdir :"Not available"}
+${installdir ? installdir : "Not available"}
 
 ## Usage
 
@@ -115,7 +115,7 @@ ${credit ? credit : "Not available"}
 
 ## License
 
-${license}
+Currently Licensed under: ${license}
 
 ## How to Contribute
 
