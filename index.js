@@ -99,7 +99,7 @@ ${description}
 - [License](#license)
 - [Contributing](#how-to-contribute)
 - [Tests](#tests)
-- [Questions](#Questions)
+- [Questions](#questions)
 
 ## Installation
 
@@ -134,7 +134,6 @@ Find me on Github at https://github.com/${gitname} or email me at: ${email}
 function init() {
     return inquirer.prompt(questions)
         .then((response) => {
-            console.log(response)
             const badgeChoice = response.license;
             let badge = "";
             switch (badgeChoice) {
@@ -151,7 +150,6 @@ function init() {
                     badge = "![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)";
                     break;
                 default:
-                    console.log(badge)
                     break;
             }
             writeFile('newREADME.md', template({...response, badge}))

@@ -18,6 +18,11 @@ You will need <mark>Nodejs</mark>
 > https://nodejs.org/en
 
 ## Usage
+
+Below is a short Demo video showing a rundown on using this application. Alternatively there are also step by step instructions below if you would like to gather more information about the process.
+
+
+
 Once you have <mark>Nodejs</mark> downloaded you will need to open the Repo below to access the code inside <mark>index.js</mark>
 
 > https://github.com/JacobCampa/README-Generator
@@ -34,7 +39,7 @@ You should then be greeted with a series of prompts related to the creation of y
 
 ![screenshot of prompts](./images/Screenshot%20(6).png)
 
-The last 2 prompts will be to input your GitHub Username and email for contacting you. They will already be formatted into a sentence with a url so you will only need the actual username and not the entire GitHub url. It will look like tthe following image once created:
+The last 2 prompts will be to input your GitHub Username and email for contacting you. They will already be formatted into a sentence with a url so you will only need the actual username and not the entire GitHub url. It will look like the following image once created:
 
 ![screenshot of questions section](./images/Screenshot%20(8).png)
 
