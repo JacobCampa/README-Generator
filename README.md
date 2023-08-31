@@ -19,10 +19,6 @@ You will need <mark>Nodejs</mark>
 
 ## Usage
 
-Below is a short Demo video showing a rundown on using this application. Alternatively there are also step by step instructions below if you would like to gather more information about the process.
-
-
-
 Once you have <mark>Nodejs</mark> downloaded you will need to open the Repo below to access the code inside <mark>index.js</mark>
 
 > https://github.com/JacobCampa/README-Generator
